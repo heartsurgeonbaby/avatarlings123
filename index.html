@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b24">
+<title>Ladies, Bugs And Avatarlings</title>
+
+<style>
+:root {
+  --bg: #101b24;
+  --panel: #192b35;
+  --text: #e8f3ed;
+  --muted: #9aafb2;
+  --water: #53c9e8;
+  --air: #d8e8bd;
+  --fire: #ff8755;
+  --earth: #a9c47b;
+  --accent: var(--water);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #24404a 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: .035;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    white 3px
+  );
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* BACKGROUND */
+
+.background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.orb {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(65px);
+  opacity: .12;
+  animation: float 14s ease-in-out infinite alternate;
+}
+
+.orb.one {
+  background: var(--water);
+  top: 10%;
+  left: -100px;
+}
+
+.orb.two {
+  background: var(--fire);
+  bottom: 5%;
+  right: -100px;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  to {
+    transform: translate(50px, -35px);
+  }
+}
+
+/* HEADER */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(13, 27, 35, .94);
+  border-bottom: 1px solid #ffffff12;
+  backdrop-filter: blur(8px);
+}
+
+.nav {
+  max-width: 1100px;
+  padding: 15px 20px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 17px;
+  font-weight: 850;
+  letter-spacing: -.6px;
+}
+
+.logo span {
+  color: var(--water);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* HERO */
+
+.hero {
+  max-width: 1050px;
+  margin: 65px auto 35px;
+  padding: 20px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--water);
+  border: 1px solid #53c9e844;
+  padding: 7px 13px;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 7vw, 75px);
+  line-height: 1.04;
+  margin: 20px 0 15px;
+  letter-spacing: -3px;
+}
+
+.hero h1 span {
+  background: linear-gradient(
+    100deg,
+    var(--water),
+    var(--air),
+    var(--fire)
+  );
+  color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 510px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+.elements {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 27px;
+}
+
+.element {
+  padding: 9px 15px;
+  background: #ffffff08;
+  border: 1px solid #ffffff18;
+  border-radius: 30px;
+  font-size: 12px;
+  transition: .2s;
+}
+
+.element:hover {
+  transform: translateY(-3px);
+  background: #ffffff15;
+}
+
+/* MAIN */
+
+.layout {
+  max-width: 1050px;
+  margin: 35px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 290px;
+  gap: 25px;
+}
+
+.section-title {
+  font-size: 19px;
+  margin: 0 0 18px;
+}
+
+/* POSTS */
+
+.feed {
+  min-width: 0;
+}
+
+.post {
+  background: rgba(25, 43, 53, .92);
+  border: 1px solid #ffffff12;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  animation: appear .55s ease both;
+  transition: border-color .2s;
+}
+
+.post:hover {
+  border-color: #53c9e844;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-head {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #3c8190, #d58b5a);
+  font-size: 19px;
+}
+
+.username {
+  font-weight: 750;
+  font-size: 13px;
+}
+
+.post-date {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.element-tag {
+  margin-left: auto;
+  font-size: 10px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #53c9e815;
+  color: var(--water);
+}
+
+.media {
+  width: 100%;
+  display: block;
+  max-height: 520px;
+  object-fit: cover;
+  background: #0c171d;
+}
+
+video.media {
+  object-fit: contain;
+}
+
+.post-content {
+  padding: 16px;
+}
+
+.post-content p {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.post-actions {
+  display: flex;
+  gap: 20px;
+  padding: 13px 16px;
+  border-top: 1px solid #ffffff10;
+}
+
+.action {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 3px;
+  transition: .2s;
+}
+
+.action:hover,
+.action.liked {
+  color: #ff8293;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+}
+
+.side-card {
+  padding: 19px;
+  background: var(--panel);
+  border: 1px solid #ffffff12;
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+
+.side-card h3 {
+  font-size: 13px;
+  margin: 0 0 15px;
+}
+
+.side-card p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.element-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  font-size: 12px;
+}
+
+.element-icon {
+  font-size: 20px;
+}
+
+.status {
+  color: #a9d99c;
+  font-size: 11px;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 35px 20px;
+  border-top: 1px solid #ffffff12;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+footer span {
+  color: var(--water);
+}
+
+/* MOBILE */
+
+@media(max-width: 750px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .nav-links {
+    gap: 10px;
+    font-size: 11px;
+  }
+
+  .hero {
+    margin-top: 35px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1.5px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+</div>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="#">LADIES, BUGS <span>&</span> AVATARLINGS</a>
+    <div class="nav-links">
+      <a href="#feed">Feed</a>
+      <a href="#elements">Elements</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">✦ The four elements unite ✦</div>
+
+  <h1>Ladies, Bugs<br>And <span>Avatarlings</span></h1>
+
+  <p>
+    A little corner of the Four Nations.
+    Share your moments, embrace your element,
+    and let the world know you're here.
+  </p>
+
+  <div class="elements" id="elements">
+    <div class="element">🌊 Water Tribe</div>
+    <div class="element">🔥 Fire Nation</div>
+    <div class="element">🌪️ Air Nomads</div>
+    <div class="element">🪨 Earth Kingdom</div>
+  </div>
+</section>
+
+<main class="layout">
+
+  <section class="feed" id="feed">
+    <h2 class="section-title">✦ Community Feed</h2>
+
+    <div id="posts"></div>
+  </section>
+
+  <aside class="sidebar">
+
+    <div class="side-card">
+      <h3>THE FOUR NATIONS</h3>
+
+      <div class="element-row">
+        <span class="element-icon">🌊</span>
+        <span>Water Tribe</span>
+      </div>
+
+      <div class="element-row">
+        <span class="element-icon">🔥</span>
+        <span>Fire Nation</span>
+      </div>
+
+      <div class="element-row">
+        <span class="element-icon">🌪️</span>
+        <span>Air Nomads</span>
+      </div>
+
+      <div class="element-row">
+        <span class="element-icon">🪨</span>
+        <span>Earth Kingdom</span>
+      </div>
+    </div>
+
+    <div class="side-card" id="about">
+      <h3>ABOUT THIS PLACE</h3>
+      <p>
+        Welcome to Ladies, Bugs And Avatarlings.
+        A community inspired by the world of Avatar.
+        Four elements, countless stories, one community.
+      </p>
+      <div class="status">● All elements operational</div>
+    </div>
+
+    <div class="side-card">
+      <h3>COMMUNITY MOTTO</h3>
+      <p>
+        "When we understand ourselves,
+        we can understand the world."
+      </p>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer>
+  Made with <span>✦</span> by the Avatarlings
+  <br><br>
+  Fan-made community project. Not affiliated with Nickelodeon.
+</footer>
+
+<script>
+/* YOUR MEDIA FILES */
+
+const posts = [
+  {
+    user: "Water Tribe Wanderer",
+    date: "July 21, 2026",
+    element: "🌊 WATER",
+    type: "image",
+    file: "1lgo1.png",
+    text: "A peaceful moment from the Four Nations. 🌊"
+  },
+  {
+    user: "Earth Kingdom Bug",
+    date: "August 9, 2026",
+    element: "🪨 EARTH",
+    type: "image",
+    file: "1lgo333a.png",
+    text: "Grounded, unbothered, and absolutely thriving."
+  },
+  {
+    user: "Fire Nation Archives",
+    date: "July 4, 2026",
+    element: "🔥 FIRE",
+    type: "video",
+    file: "2026-07-04 17-52-42.mp4",
+    text: "A little firebending energy for the timeline."
+  },
+  {
+    user: "Air Nomad",
+    date: "July 5, 2026",
+    element: "🌪️ AIR",
+    type: "video",
+    file: "2026-07-05 07-14-24.mp4",
+    text: "Going wherever the wind takes us."
+  },
+  {
+    user: "The Avatarlings",
+    date: "July 21, 2026",
+    element: "🌊 WATER",
+    type: "video",
+    file: "2026-07-21 12-12-31.mp4",
+    text: "A moment worth remembering."
+  },
+  {
+    user: "Bug Appreciation Club",
+    date: "August 9, 2026",
+    element: "🪨 EARTH",
+    type: "video",
+    file: "2026-08-09 08-31-28.mp4",
+    text: "Even the smallest creatures have their own element."
+  },
+  {
+    user: "Avatar Archive",
+    date: "November 20, 2026",
+    element: "🔥 FIRE",
+    type: "video",
+    file: "2026-11-20 11-25-29.mp4",
+    text: "The journey continues. 🔥"
+  },
+  {
+    user: "Four Nations Gallery",
+    date: "Community Gallery",
+    element: "🌪️ AIR",
+    type: "image",
+    file: "73f2ff22a6448d951acee26bd78710b3_4qcj.jpg",
+    text: "A little piece of our world."
+  }
+];
+
+/* RENDER POSTS */
+
+const feed = document.getElementById("posts");
+
+posts.forEach((post, index) => {
+
+  const article = document.createElement("article");
+  article.className = "post";
+
+  const media = document.createElement(
+    post.type === "video" ? "video" : "img"
+  );
+
+  media.className = "media";
+  media.src = post.file;
+
+  if (post.type === "video") {
+    media.controls = true;
+    media.preload = "none";
+    media.playsInline = true;
+  } else {
+    media.loading = "lazy";
+    media.alt = post.text;
+  }
+
+  const head = document.createElement("div");
+  head.className = "post-head";
+
+  head.innerHTML = `
+    <div class="avatar">${["🌊","🪨","🔥","🌪️"][index % 4]}</div>
+    <div>
+      <div class="username">${post.user}</div>
+      <div class="post-date">${post.date}</div>
+    </div>
+    <div class="element-tag">${post.element}</div>
+  `;
+
+  const content = document.createElement("div");
+  content.className = "post-content";
+
+  const description = document.createElement("p");
+  description.textContent = post.text;
+  content.appendChild(description);
+
+  const actions = document.createElement("div");
+  actions.className = "post-actions";
+
+  actions.innerHTML = `
+    <button class="action like">♡ Like</button>
+    <button class="action share">↗ Share</button>
+  `;
+
+  actions.querySelector(".like").addEventListener("click", e => {
+    const button = e.currentTarget;
+    button.classList.toggle("liked");
+    button.textContent = button.classList.contains("liked")
+      ? "♥ Liked"
+      : "♡ Like";
+  });
+
+  actions.querySelector(".share").addEventListener("click", async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Ladies, Bugs And Avatarlings",
+          text: post.text,
+          url: location.href
+        });
+      } catch (error) {}
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(location.href);
+    }
+  });
+
+  article.append(head, media, content, actions);
+  feed.appendChild(article);
+});
+
+/* LIGHTWEIGHT INTERACTION */
+
+document.querySelectorAll(".element").forEach(element => {
+  element.addEventListener("click", () => {
+    element.style.borderColor = "#53c9e8";
+    setTimeout(() => {
+      element.style.borderColor = "";
+    }, 500);
+  });
+});
+</script>
+
+</body>
+</html>
